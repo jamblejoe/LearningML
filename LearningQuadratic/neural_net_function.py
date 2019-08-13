@@ -48,13 +48,17 @@ test_data = [ (x,y) for x,y in zip(random_xs,target_ys) ]
 
 # %% Train network
 print('Train network')
+
+# Set up network and domain, number of epochs and array for output
 net = nn.NeuralNetwork([1,2,1])
 x = np.arange(-1,1,0.01)
 num = 50
 y = np.zeros([num+1,len(x)])
 
+# Save output of network before training begins
 y[0,:] = np.asarray( list(map(net.feed_forward, x)) ).reshape(len(x))
 
+# Start training and saving the output of the network
 for i in range(1,num+1):
     
     net.stochastic_gradient_decent(training_data, 1, 50, 1.0)
