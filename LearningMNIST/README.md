@@ -1,4 +1,4 @@
-# LearningML
+# LearningMNIST
 
 The neural_network.py file defines a NeuralNetwork object which has methods for creating and training a neural network.
 This code was written while I was reading Michael Nielsen's online book: http://neuralnetworksanddeeplearning.com/
