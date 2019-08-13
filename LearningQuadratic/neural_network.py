@@ -147,7 +147,7 @@ class NeuralNetwork:
         
         
     def stochastic_gradient_decent(self, training_data, epochs, 
-                                   mini_batch_size, eta, test_data=None):
+                                   mini_batch_size, eta):
         """
         This method will train the neural network using mini-batch stochastic
         gradient descent.  The argument training_data is a list of tuples
@@ -157,14 +157,7 @@ class NeuralNetwork:
         The variable epochs defines the number of epochs to train the network
         for and mini_batch_size defines the size of the batches the training
         data should be divided into. Eta is the learning rate
-        
-        If test_data is provided then the network will be evaluated against 
-        the test data after each epoch, and progress printed out. 
-        This is useful for tracking progress, but slows things down.
-        """
-        if test_data: 
-            n_test = len(test_data)
-        
+        """        
         n = len(training_data)
         
         for j in range(epochs):
@@ -176,29 +169,14 @@ class NeuralNetwork:
             
             for mini_batch in mini_batches:
                 self.update(mini_batch, eta)
-                
-            if test_data:
-                print("Epoch {0}: {1} / {2}".format(j, 
-                      self.evaluate(test_data), n_test) )
-            else:
-                print( "Epoch {0} complete".format(j) )
-                
+                    
     
-    
-    def evaluate(self, test_data):
-        """
-        This method returns the number of correct ouputs the network returns
-        given the labeled data in test_data
-        """
-        test_results = [int(self.feed_forward(x).argmax() == y)
-                        for x, y in test_data]
-        return sum(test_results)
-    
-    
+
 
 # Functions for computing the sigmoid function and its derivative:
 def sigmoid(z):
     return 1/( 1 + np.exp(-z) )
+
 
 def sigmoid_prime(z):
     sig = sigmoid(z)

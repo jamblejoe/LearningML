@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,bbm,graphicx}
+\usepackage{authblk}
+\usepackage{faktor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage{color}
+
+\begin{document}
+
+\title{ Notes on Simple Nets }
+
+\author[$\dagger$]{}
+%\affil[$\dagger$]{Department of Theoretical Physics, Maynooth University}
+\date{}
+
+\maketitle
+
+
+\section{Learning a quadratic function}
+
+\subsection{Introduction}
+
+We trained a simple neural net to learn the function $f(x)=x^2$ and explore aspects of the landscape of the related loss function. The network we trained, depicted in Fig.\ref{DiamondNet}, has a single input neuron, a single hidden layer with two neurons and a single output neuron. The network we trained uses the sigmoid function as its activation function and so the output of the network is a number in the interval $[0,1]$. For this reason, we focus on learning the function $f(x)=x^2$ over the domain $[-1,1]$ so that the range of $f$ matches the range of out network.
+
+\begin{figure}
+\center
+\includegraphics[scale=0.5]{Images/net_1_2_1.png}
+\caption{}
+\label{DiamondNet}
+\end{figure}
+
+
+To train the network, we generated an array of random 10000 points uniformly distributed in the interval $[0,1]$ and then computed the value of $f(x)$ for each random point. This gave us a data set to train our network on. A second data set was generated, in the same way, to be used for testing how well the network generalises. The network was trained using the stochastic gradient decent method for 50 epochs with a mini-batch size of 50. The evolution of the networks output as function of $x$ is shown in Fig.\ref{training}
+
+\begin{figure}
+\begin{subfigure}{.32\textwidth}
+\includegraphics[scale=0.3]{Images/ALearningNet1.png}
+\caption{}
+\label{training1}
+\end{subfigure}
+\begin{subfigure}{.32\textwidth}
+\includegraphics[scale=0.3]{Images/ALearningNet6.png}
+\caption{}
+\label{training2}
+\end{subfigure}
+\begin{subfigure}{.32\textwidth}
+\includegraphics[scale=0.3]{Images/ALearningNet50.png}
+\caption{}
+\label{training3}
+\end{subfigure}
+\caption{}
+\label{training}
+\end{figure}
+
+Once the network had been trained, we then looked at the performance of the network. The loss function used to evaluate the performance of the net was the squared Euclidean distance between the output of the net and the target output averaged over the test data.
+
+The change in loss due to a variation in each of the networks parameters was calculated. We number the parameters of the network 0 to 6. The weights connecting the first two layers are numbers 0 and 1 while the weights connecting the second and third layers are numbered 2 and 3. The biases of the hidden layers are numbered 4 and 5 while the bias for the output neuron is given the number 6. Given the trained weights and biases $\{\omega_i\}$, we vary a particular parameter by adding a constant $\delta \omega_i$ ranging from -10 to 10 while holding all other parameters fixed. The results are shown in Fig.\ref{LossNearTrainedWeights}. We see each curve having a local minimum at $\delta\omega_i = 0$ indicating the network found a local minimum of the loss function while being trained.
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.5]{Images/LossInVicinityOfTrainedWeights.png}
+\caption{}
+\label{LossNearTrainedWeights}
+\end{figure}
+
+
+
+\end{document}
