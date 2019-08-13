@@ -10,4 +10,4 @@ layer and 10 output neurons. The weights and biases of the trained network are t
 The draw_input script presents the user with a canvas to draw images which are then converted to a 28 by 28 numpy array
 and fed into the trained network stored in pickled_neural_net. The output of the neural net is printed to the console. I found most of this code in the following stack exchange forum: https://stackoverflow.com/questions/40604233/draw-on-python-tkinter-canvas-using-mouse-and-obtain-points-to-a-list
 
-The iew_data.py file has code for viewing a selected number of images from the MNIST data set.
+The view_data.py file has code for viewing a selected number of images from the MNIST data set.
