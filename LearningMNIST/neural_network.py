@@ -10,6 +10,49 @@ import numpy as np
 import random
 
 
+
+#### Define the quadratic and cross-entropy cost functions
+class QuadraticLoss(object):
+
+    @staticmethod
+    def fn(a, y):
+        """
+        Return the squared Euclidean distance between the output a and
+        the desired output y. Result is divided by two to avoid extra factors
+        of 2 in derivative
+        """
+        return 0.5*np.linalg.norm(a-y)**2
+
+    @staticmethod
+    def delta(a, y):
+        """
+        Return the gradient of the Quadractic loss function w.r.t. z^L
+        (i.e. the input to the last sigmoid function)
+        """
+        return (a-y) * a * (1-a)
+
+
+
+class CrossEntropyLoss(object):
+
+    @staticmethod
+    def fn(a, y):
+        """
+        Return the cross entropy loss associated with an output a and 
+        desired output y.
+        """
+        return np.sum(np.nan_to_num(-y*np.log(a)-(1-y)*np.log(1-a)))
+
+    @staticmethod
+    def delta(a, y):
+        """
+        Return the gradient of the cross entropy loss w.r.t. z^L.
+        """
+        return (a-y)
+
+
+
+# Define the neural network class
 class NeuralNetwork:
     """
     This class defines methods which can be used to create a neural network
@@ -18,7 +61,7 @@ class NeuralNetwork:
 
     
     
-    def __init__(self, layer_sizes):
+    def __init__(self, layer_sizes, lossFn=CrossEntropyLoss):
         """
         Here, the variable layer_sizes is expected to be a list of positive
         integers defining the number of neurons in each layer of the network.
@@ -33,10 +76,16 @@ class NeuralNetwork:
         configuration and to be optimised by the training algorithm
         """
         self.num_layers = len(layer_sizes)
-        self.layer_sizes= layer_sizes
+        self.layer_sizes = layer_sizes
+        self.lossFn = lossFn
         
         self.biases = [ np.random.randn(n,1) for n in layer_sizes[1:] ]
-        self.weights= [ np.random.randn(n,m)
+        
+        # The weights are generated using a gaussian with a standard
+        # deviation of sqrt(m) where m is the number of coloumns of the
+        # weight matrix. This avoids initial weights that saturate a layer
+        # which slows down learning
+        self.weights= [ np.random.randn(n,m)/np.sqrt(m)
                         for n, m in zip(layer_sizes[1:], layer_sizes[:-1]) ]
     
     
@@ -88,7 +137,9 @@ class NeuralNetwork:
             zeds.append( z )
 
         # gradient of Euclidean distance w.r.t. to z for the output layer:
-        delta = (a - target) * sigmoid_prime(z)
+        # [ note: d(sig)/dz = sig(z)*(1-sig(z)) ]
+        #delta = (a - target) * (a*(1-a))
+        delta = self.lossFn.delta(a, target)
         
         # gradients w.r.t. weight matrices and bias vectors will be stored here
         nWs = [ np.dot(delta, activations[-2].T) ]
@@ -99,11 +150,12 @@ class NeuralNetwork:
         vector calculated above to compute the gradient w.r.t. weights and 
         biases associated with previous layers.
         '''
-        for W, z, a in zip( reversed(self.weights[1:]), 
-                            reversed(zeds[:-1]),
+        for W, sz, a in zip( reversed(self.weights[1:]), 
+                            reversed(activations[:-1]),
                             reversed(activations[:-2]) ):
             
-            delta = W.T.dot(delta) * sigmoid_prime( z )
+            # d(sig)/dz = sig(z)*(1-sig(z))
+            delta = W.T.dot(delta) * (sz*(1-sz))
             
             nWs.append( np.dot(delta, a.T) )
             nbs.append( delta )
@@ -122,7 +174,7 @@ class NeuralNetwork:
     
     
     
-    def update(self, mini_batch, eta):
+    def update(self, mini_batch, eta, lmbda):
         """
         This method will update the network's weights and biases by applying
         gradient descent using backpropagation to a single mini batch.
@@ -138,8 +190,11 @@ class NeuralNetwork:
             
             nabla_W = [nW + nWx for nW, nWx in zip(nabla_W, nWs) ]
             nabla_b = [nb + nbx for nb, nbx in zip(nabla_b, nbs) ]
-            
-        self.weights = [W - (eta/n)*nW 
+         
+        # The eta*lmbda/n term comes from L2 regularisation, so the algorithm
+        # is actually minimising loss+lmbda*sum w**2/2 in an attempt to avoid 
+        # overfitting.
+        self.weights = [(1-eta*lmbda)*W - (eta/n)*nW 
                         for W, nW in zip( self.weights, nabla_W)]
         self.biases  = [b - (eta/n)*nb 
                         for b, nb in zip( self.biases, nabla_b)]
@@ -147,7 +202,12 @@ class NeuralNetwork:
         
         
     def stochastic_gradient_decent(self, training_data, epochs, 
-                                   mini_batch_size, eta, test_data=None):
+                                   mini_batch_size, eta, lmbda=0.0,
+                                   test_data = None,
+                                   get_training_loss=False,
+                                   get_training_acc=False,
+                                   get_test_loss=False,
+                                   get_test_acc=False):
         """
         This method will train the neural network using mini-batch stochastic
         gradient descent.  The argument training_data is a list of tuples
@@ -166,6 +226,11 @@ class NeuralNetwork:
             n_test = len(test_data)
         
         n = len(training_data)
+        training_loss = [] 
+        training_acc = []
+        test_loss = [] 
+        test_acc = [] 
+        
         
         for j in range(epochs):
             
@@ -175,13 +240,35 @@ class NeuralNetwork:
                             for k in range(0, n, mini_batch_size)]
             
             for mini_batch in mini_batches:
-                self.update(mini_batch, eta)
+                self.update(mini_batch, eta, lmbda)
                 
-            if test_data:
-                print("Epoch {0}: {1} / {2}".format(j, 
-                      self.evaluate(test_data), n_test) )
-            else:
-                print( "Epoch {0} complete".format(j) )
+                
+            print("Epoch {0} training complete\n".format(j))
+            
+            if get_training_loss:
+                loss = self.loss_function(training_data, lmbda)
+                training_loss.append(loss)
+                print("Loss on training data: {}".format(loss) )
+                
+            if get_training_acc:
+                accuracy = self.evaluate(training_data)
+                training_acc.append(accuracy/n)
+                print("Accuracy on training data: {} / {}".format(
+                    accuracy, n) )
+                
+            if get_test_loss:
+                loss = self.loss_function(test_data, lmbda)
+                test_loss.append(loss)
+                print("Loss on test data: {}".format(loss) )
+                
+            if get_test_acc:
+                accuracy = self.evaluate(test_data)
+                test_acc.append(accuracy/n_test)
+                print("Accuracy on test data: {} / {}".format(
+                    accuracy, n_test) )
+            
+            print('\n')
+        return test_loss, test_acc, training_loss, training_acc
                 
     
     
@@ -190,10 +277,29 @@ class NeuralNetwork:
         This method returns the number of correct ouputs the network returns
         given the labeled data in test_data
         """
-        test_results = [int(self.feed_forward(x).argmax() == y)
+        test_results = [int(self.feed_forward(x).argmax() == y.argmax())
                         for x, y in test_data]
         
         return sum(test_results)
+    
+    
+    
+    def loss_function(self, data, lmbda):
+        """
+        This method returns the loss function evaulated using the labeled
+        images in the array data
+        """
+        loss = 0.0
+        
+        for x, y in data:
+            a = self.feed_forward(x)
+            loss += self.lossFn.fn(a, y)
+        
+        if lmbda:
+            loss += 0.5*(lmbda)*sum(
+                    np.linalg.norm(w)**2 for w in self.weights)
+        
+        return loss/len(data)
     
     
 
