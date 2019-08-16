@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.12)  15 AUG 2019 21:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.12)  17 AUG 2019 00:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -790,18 +790,18 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
 (./SimpleNets.aux)
 \openout1 = `SimpleNets.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -879,12 +879,12 @@ Package caption Info: End \AtBeginDocument code.
 
 ABD: EveryShipout initializing macros
 \c@lstlisting=\count136
-LaTeX Font Info:    Try loading font information for U+msa on input line 31.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 31.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -892,35 +892,35 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <Images/net_1_2_1.png, id=4, 289.08pt x 271.0125pt>
 File: Images/net_1_2_1.png Graphic file (type png)
 <use Images/net_1_2_1.png>
-Package pdftex.def Info: Images/net_1_2_1.png  used on input line 35.
+Package pdftex.def Info: Images/net_1_2_1.png  used on input line 34.
 (pdftex.def)             Requested size: 144.53964pt x 135.5059pt.
 <Images/ALearningNet1.png, id=6, 462.528pt x 346.896pt>
 File: Images/ALearningNet1.png Graphic file (type png)
 <use Images/ALearningNet1.png>
-Package pdftex.def Info: Images/ALearningNet1.png  used on input line 45.
+Package pdftex.def Info: Images/ALearningNet1.png  used on input line 44.
 (pdftex.def)             Requested size: 138.75946pt x 104.0696pt.
 
-Overfull \hbox (13.9566pt too wide) in paragraph at lines 45--46
+Overfull \hbox (13.9566pt too wide) in paragraph at lines 44--45
 [][] 
  []
 
 <Images/ALearningNet6.png, id=7, 462.528pt x 346.896pt>
 File: Images/ALearningNet6.png Graphic file (type png)
 <use Images/ALearningNet6.png>
-Package pdftex.def Info: Images/ALearningNet6.png  used on input line 50.
+Package pdftex.def Info: Images/ALearningNet6.png  used on input line 49.
 (pdftex.def)             Requested size: 138.75946pt x 104.0696pt.
 
-Overfull \hbox (13.9566pt too wide) in paragraph at lines 50--51
+Overfull \hbox (13.9566pt too wide) in paragraph at lines 49--50
 [][] 
  []
 
 <Images/ALearningNet50.png, id=8, 462.528pt x 346.896pt>
 File: Images/ALearningNet50.png Graphic file (type png)
 <use Images/ALearningNet50.png>
-Package pdftex.def Info: Images/ALearningNet50.png  used on input line 55.
+Package pdftex.def Info: Images/ALearningNet50.png  used on input line 54.
 (pdftex.def)             Requested size: 138.75946pt x 104.0696pt.
 
-Overfull \hbox (13.9566pt too wide) in paragraph at lines 55--56
+Overfull \hbox (13.9566pt too wide) in paragraph at lines 54--55
 [][] 
  []
 
@@ -931,31 +931,31 @@ Overfull \hbox (13.9566pt too wide) in paragraph at lines 55--56
 File: Images/LossInVicinityOfTrainedWeights.png Graphic file (type png)
 <use Images/LossInVicinityOfTrainedWeights.png>
 Package pdftex.def Info: Images/LossInVicinityOfTrainedWeights.png  used on inp
-ut line 69.
+ut line 68.
 (pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
 [2 <./Images/ALearningNet1.png> <./Images/ALearningNet6.png> <./Images/ALearnin
-gNet50.png> <./Images/LossInVicinityOfTrainedWeights.png>] [3]
-(./SimpleNets.aux) ) 
+gNet50.png> <./Images/LossInVicinityOfTrainedWeights.png>] (./SimpleNets.aux) )
+ 
 Here is how much of TeX's memory you used:
- 15193 strings out of 492982
- 281645 string characters out of 6134895
- 331051 words of memory out of 5000000
- 18469 multiletter control sequences out of 15000+600000
+ 15192 strings out of 492982
+ 281642 string characters out of 6134895
+ 331027 words of memory out of 5000000
+ 18468 multiletter control sequences out of 15000+600000
  10095 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,16n,73p,840b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on SimpleNets.pdf (3 pages, 199054 bytes).
+ 54i,9n,73p,840b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb>
+Output written on SimpleNets.pdf (2 pages, 194795 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 57 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

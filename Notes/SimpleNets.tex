@@ -11,7 +11,6 @@
 \usepackage{listings}
 \usepackage{color}
 
-\newcommand{\vin}{\rotatebox[origin=c]{90}{$\in$}}
 
 \begin{document}
 
@@ -70,30 +69,6 @@ The change in loss due to a variation in each of the networks parameters was cal
 \caption{}
 \label{LossNearTrainedWeights}
 \end{figure}
-
-\newpage
-
-\begin{equation}
-\begin{array}{cccccccccccccc}
-&
-\vin\searrow & \downarrow &  &  & \vin 
- & \downarrow  &  &  &
- &
-\vin & \downarrow &  &  \\
-
-A_0 &
-\xrightarrow{\omega} & A_1 & \xrightarrow{\sigma} & A_1 & 
-\xrightarrow{\omega} & A_2 & \xrightarrow{\sigma} & A_2 &
-\cdots &
-\xrightarrow{\omega} & A_n & \xrightarrow{\sigma} & A_n \\
-
-x &
-\rightarrow & z_1 & \rightarrow & a_1 & 
-\rightarrow & z_2 & \rightarrow & a_2 &
-\cdots &
-\rightarrow & z_n & \rightarrow & y
-\end{array}
-\end{equation}
 
 
 
