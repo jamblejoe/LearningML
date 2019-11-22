@@ -1,0 +1,58 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,bbm,graphicx}
+\usepackage{authblk}
+\usepackage{faktor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage{color}
+
+
+\begin{document}
+
+\title{ Notes on Super Acceleration }
+
+\author[$\dagger$]{}
+%\affil[$\dagger$]{Department of Theoretical Physics, Maynooth University}
+\date{}
+
+\maketitle
+
+
+\section{Optimization Algorithms}
+
+Gradient descent
+\begin{equation}
+	\theta_{i+1} = \theta_i - \eta \nabla L(\theta_i),
+\end{equation}
+where $\eta$ is the step length? \\
+
+Momentum gradient descent
+\begin{align}
+	m_i &= g m_{i-1} - (1-g) \eta \nabla L(\theta_i) \\
+	\theta_{i+1} &= \theta_i + m_i,
+\end{align}
+where $g=0.9$. \\
+
+Nesterov / Super acceleration
+\begin{align}\label{eq:acceleration}
+	m_i &= gm_{i-1} - (1-g)\eta \nabla L(\theta_i + \nu m_{i-1}) \\
+	\theta_{i+1} &= \theta_i + m_i,
+\end{align}
+where $\nu$ is the acceleration parameter. 
+
+
+\section{Model}
+We will focus our analysis first on a parabolic, one-dimensional function, $L(x) = 1/2 x^2$. Then \ref{eq:acceleration} reads
+\begin{align}
+	m_i &= (g-(1-g)\eta \nu) m_{i-1} - (1-g)\eta x_i \\
+	x_{i+1} &= x_i + m_i
+\end{align}
+
+
+
+\end{document}

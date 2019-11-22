@@ -3,5 +3,5 @@
 # tex files
 *.aux
 *.log
-.*synctex.gz
+*.synctex.gz
 
